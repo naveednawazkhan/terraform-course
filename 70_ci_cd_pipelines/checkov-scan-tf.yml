@@ -13,8 +13,8 @@ steps:
 - task: Bash@3
   displayName: 'Install checkov'
   inputs:
-  targetTupe: 'inline'
-  script: 'pip3 install checov'
+    targetTupe: 'inline'
+    script: 'pip3 install checov'
 
 - task: Bash@3
   displayName: 'Checkov Static Code Analysis'
@@ -23,15 +23,14 @@ steps:
     script: | 
     mkdir checkov-report
        checkov -d . --skip-path ./*.json --check MEDIUM --output junitxml > $(System.DefaultWorkingDirectory)/checkov-report/TEST-checkov-report.xml
-
 - task: PublishTestResults@2
-  displayName: 'Publish checkov Test Results'
-  condition: succeededOrFailed()
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFile: '**/TEST-*.xml'
-    searchFolder: '$(System.DefaultWorkingDirectory)/checkov-report'
-    mergeTestResults: false
-    testRuntitle: CheckOV Scan
-    failTaskOnFailedTests: false
-    publishRunAttachements: true
+displayName: 'Publish checkov Test Results'
+condition: succeededOrFailed()
+inputs:
+  testResultsFormat: 'JUnit'
+  testResultsFile: '**/TEST-*.xml'
+  searchFolder: '$(System.DefaultWorkingDirectory)/checkov-report'
+  mergeTestResults: false
+  testRuntitle: CheckOV Scan
+  failTaskOnFailedTests: false
+  publishRunAttachements: true
