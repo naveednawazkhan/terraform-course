@@ -23,14 +23,3 @@ steps:
     script: | 
     mkdir checkov-report
        checkov -d . --skip-path ./*.json --check MEDIUM --output junitxml > $(System.DefaultWorkingDirectory)/checkov-report/TEST-checkov-report.xml
-- task: PublishTestResults@2
-displayName: 'Publish checkov Test Results'
-condition: succeededOrFailed()
-inputs:
-  testResultsFormat: 'JUnit'
-  testResultsFile: '**/TEST-*.xml'
-  searchFolder: '$(System.DefaultWorkingDirectory)/checkov-report'
-  mergeTestResults: false
-  testRuntitle: CheckOV Scan
-  failTaskOnFailedTests: false
-  publishRunAttachements: true
