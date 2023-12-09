@@ -12,9 +12,9 @@ steps:
 
 - task: Bash@3
   displayName: 'Install checkov'
-    inputs:
-      targetType: 'inline'
-      script: 'pip3 install checkov'
+  inputs:
+  targetTupe: 'inline'
+  script: 'pip3 install checov'
 
 - task: Bash@3
   displayName: 'Checkov Static Code Analysis'
