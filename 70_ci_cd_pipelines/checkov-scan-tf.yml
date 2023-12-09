@@ -10,7 +10,7 @@ pool:
 
 steps:
 
-- task
+- task: Bash@3
   displayName: 'Install checkov'
     inputs:
       targetType: 'inline'
